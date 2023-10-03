@@ -25,16 +25,11 @@ const chanceDisplayer = document.getElementById('chanceDisplayer');
 const wrongLettersDisplayer = document.getElementById('wrongLettersDisplayer');
 
 let wrongLetters = '';
-
-//in game variable
 let userAnswerValue = ''; 
 let hiddenWord = animalWords[getRandomNumber(0, animalWords.length)];
 const maxGuesses = 6;
 let wrongGuesses = 0;
 
-console.log(hiddenWord);
-
-// enterButton.addEventListener('click', getUserInputValue);
 enterButton.addEventListener('click', playGame);
 enterButton.addEventListener('click', () => {
   userAnswer.innerHTML = '';
@@ -42,10 +37,6 @@ enterButton.addEventListener('click', () => {
 
 displayEmptyBoxes();
 checkInput();
-
-// function getUserInputValue(){
-//   userAnswerValue = userAnswer.value.toUpperCase();
-// }
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -55,7 +46,7 @@ function playGame(){
   userAnswerValue = userAnswer.value.toUpperCase();
   userAnswer.value = '';
 
-  if(wrongGuesses < maxGuesses){
+  if(wrongGuesses < maxGuesses - 1){
     let doesExist = false;
     
     if(hiddenWord.includes(userAnswerValue)){
@@ -87,7 +78,8 @@ function playGame(){
     }
   }
   else{
-    alert("You lose!")
+    alert(`You lose! The correct answer is: ${hiddenWord}. Refresh the page to play again!`);
+    
   }
 }
 
